@@ -1,0 +1,32 @@
+{% extends "layout/basic.html" %}
+
+{% block title %}File: {{ csv_name }}{% endblock %}
+
+{% block content %}
+<h1>File: {{ csv_name }}</h1>
+{{ csv_html }}
+<h2>Make pivot table</h2>
+<form id="pivot-form" action="{% url 'build_pivot' %}" method="post">
+    {% csrf_token %}
+    <input type="text" value="{{ csv_path }}" name="csv_path" hidden>
+    <label for="index">Index</label>
+    <select id="index" name="index-choises" form="pivot-form">
+        {% for option in pivot_options_index_and_column %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+    <label for="column">Column</label>
+    <select id="column" name="column-choises" form="pivot-form">
+        {% for option in pivot_options_index_and_column %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+    <label for="value">Value</label>
+    <select id="value" name="value-choises" form="pivot-form">
+        {% for option in pivot_options_values %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Submit</button>
+</form> 
+{% endblock %}

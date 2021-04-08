@@ -1,0 +1,11 @@
+{% extends "layout/basic.html" %}
+
+{% block title %}Upload csv file{% endblock %}
+
+{% block content %}
+<form method="post" action="{% url 'upload_csv' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
