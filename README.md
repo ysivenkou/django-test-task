@@ -1,1 +1,1 @@
-# python_django_tasks
+# Django test task
